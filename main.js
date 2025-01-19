@@ -10,8 +10,18 @@ const guessField = document.querySelector(".guessField")
 let guessCount = 1;
 let resetButton;
 
+guessSubmit.addEventListener("click", checkGuess);
 function checkGuess(){
-    guessSubmit.addEventListener("click", checkGuess);
+
+    function setGameOver(){
+        guessField.disabled = true;
+        guessSubmit.disabled = true;
+        resetButton = document.createElement("button");
+        resetButton.textContent = "Start new game";
+        document.body.append(resetButton);
+        resetButton.addEventListener("click", resetGame)
+    }
+
     const userGuess = Number(guessField.value)
     if(guessCount === 1){
         guesses.textContent = "Previous Guesses:";
@@ -39,4 +49,25 @@ function checkGuess(){
     guessCount++;
     guessField.value = "";
     guessField.focus();
+
+    function resetGame(){
+        guessCount = 1;
+
+        const resetParas = document.querySelectorAll(".resultParas p");
+        for (const resetPara of resetParas){
+            resetPara.textContent = "";
+        }
+
+        resetButton.parentNode.removeChild(resetButton);
+
+        guessField.disabled = false;
+        guessSubmit.disabled = false;
+
+        guessField.value = "";
+        guessField.focus();
+
+        lastResult.stle.backgroundColor = "white";
+
+        randomNumber = Math.floor(Math.random() * 100) + 1;
+    }
 }
