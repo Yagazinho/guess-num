@@ -6,4 +6,17 @@ body{
 
 input[type="number"]{
     width: 30%;
+    margin: 10px 0;
+}
+
+.game-container{
+    height: 100vh;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.lastResult{
+    width: 50%;
+    border-radius: 25px;
+    padding: 5xp;
 }
